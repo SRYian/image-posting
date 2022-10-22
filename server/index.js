@@ -4,39 +4,42 @@ import session from "express-session";
 import cors from "cors";
 import dotenv from "dotenv";
 import db from "./config/Database.js";
-
+import MySQLStore from "express-mysql-session";
 // import routes
 import UserRoute from "./routes/UserRoute.js";
+import AuthRoute from "./routes/AuthRoute.js";
 
 dotenv.config();
 
 // define application
 const app = express();
 const port = process.env.APP_PORT;
-
+const TWO_HOURS = 1000 * 60 * 2;
 // apply middleware
+const options = {
+  host: "localhost",
+  user: "root",
+  database: "testdb",
+};
+
+const sessionStore = new MySQLStore(options);
 app.use(
   session({
-    secret: process.env.SESS_SECRET,
+    name: process.env.SESS_NAME,
     resave: false,
+    saveUninitialized: false,
+    store: sessionStore,
+    secret: process.env.SESS_SECRET,
     saveUninitialized: true,
-    cookie: {
-      secure: "auto",
-    },
+    cookie: { maxAge: TWO_HOURS, sameSite: true, secure: "auto" },
   })
 );
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json());
 app.use(UserRoute);
+app.use(AuthRoute);
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express.static("public"));
-
-try {
-  await db.authorized;
-  console.log("Connection has been established successfully.");
-} catch (error) {
-  console.error("Unable to connect to the database:", error);
-}
 
 // db.execute("SELECT * FROM `user`", (err, results, fields) => {
 //   console.log(results);

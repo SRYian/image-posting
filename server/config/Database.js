@@ -7,11 +7,11 @@
 
 // create the connection to database
 import mysql from "mysql2";
-
-const db = mysql.createPool({
+const options = {
   host: "localhost",
   user: "root",
   database: "testdb",
-});
+};
+const db = mysql.createPool(options);
 
 export default db;
