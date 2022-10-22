@@ -37,3 +37,6 @@ build
 
 # testing
 /coverage
+
+# testing
+*.rest
