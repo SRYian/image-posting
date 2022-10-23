@@ -40,3 +40,4 @@ build
 
 # testing
 *.rest
+*sql

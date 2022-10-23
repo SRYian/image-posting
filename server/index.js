@@ -41,9 +41,25 @@ app.use(AuthRoute);
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express.static("public"));
 
-// db.execute("SELECT * FROM `user`", (err, results, fields) => {
-//   console.log(results);
-// });
+import * as user from "./models/UserModel.js";
+// example of using this mysql2
+// async function foo() {
+//   const [rows, fields] = await db.execute("SELECT * FROM `user`", []);
+//   return rows;
+// }
+// let users = await (async function () {
+//   const [rows, fields] = await db.execute("SELECT username FROM `user`", []);
+//   return rows;
+// })();
+
+// example fucntionality in case future me forgot
+// let bar = await user.getUserbyId(1);
+// let users = await user.getallUser();
+// console.log(bar);
+// console.log(users);
+// console.log(bar[0].username);
+// console.log(users);
+
 app.listen(port, function () {
   console.log("I am alive on port http://localhost:" + port);
 });

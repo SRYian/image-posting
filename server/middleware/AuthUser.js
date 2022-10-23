@@ -1,17 +1,14 @@
-import db from "../config/Database.js";
+import * as user from "../models/UserModel.js";
 
 export const VerifyUser = async (req, res, next) => {
   if (!req.session.userID) {
     return res.status(400).json({ msg: "Please login" });
   }
-  const [rows, fields] = await db
-    .promise()
-    .execute("SELECT username FROM `user` WHERE `username` = ?", [
-      req.session.userID,
-    ]);
-  if (!rows.length) {
+  const result = await user.getusernamebyUsername(req.session.userID);
+  // console.log(result);
+  if (!result.length) {
     return res.status(404).json({ msg: "User not found" });
   }
-  req.userID = rows[0].username;
+  req.userID = result[0].username;
   next();
 };
