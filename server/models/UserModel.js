@@ -36,7 +36,7 @@ export async function getUserPassbyId(id) {
 
 export async function getUserPassbyUsername(username) {
   const [rows, fields] = await db.execute(
-    "SELECT username, password FROM `user` WHERE username=?",
+    "SELECT id, username, password FROM `user` WHERE username=?",
     [username]
   );
   return rows;

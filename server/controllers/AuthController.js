@@ -6,7 +6,7 @@ export const Login = async (req, res) => {
   if (!result.length) {
     return res.status(404).json({ msg: "User not found" });
   }
-  if (req.session.userID === req.body.username) {
+  if (req.session.userName === req.body.username) {
     return res.status(404).json({ msg: "User already logged in!" });
   }
   const match = await argon2
@@ -15,14 +15,15 @@ export const Login = async (req, res) => {
   if (!match) {
     return res.status(400).json({ msg: "Wrong Password" });
   }
-  req.session.userID = result[0].username;
+  req.session.userID = result[0].id;
+  req.session.userName = result[0].username;
   const id = result[0].id;
   const username = result[0].username;
-  return res.status(200).json({ id, username });
+  return res.status(200).json({ username });
 };
 
 export const Me = async (req, res) => {
-  if (!req.session.userID) {
+  if (!req.session.userName) {
     return res.status(400).json({ msg: "Please login" });
   }
 

@@ -10,7 +10,7 @@ export const getUsers = async (req, res) => {
     res.status(200).json(result);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ msg: err.msg });
+    res.status(500).json({ msg: error.message });
   }
 };
 
@@ -23,7 +23,7 @@ export const getUserbyId = async (req, res) => {
     res.status(200).json(result);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ msg: err.msg });
+    res.status(500).json({ msg: error.message });
   }
 };
 
@@ -40,7 +40,7 @@ export const createUser = async (req, res) => {
     res.status(201).json({ msg: "Registration successfull" });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ msg: err.msg });
+    res.status(500).json({ msg: error.message });
   }
 };
 
@@ -67,7 +67,7 @@ export const updateUser = async (req, res) => {
     res.status(201).json({ msg: "Update successfull" });
   } catch (error) {
     console.log(error);
-    res.status(400).json({ msg: error.msg });
+    res.status(400).json({ msg: error.message });
   }
 };
 
@@ -81,6 +81,6 @@ export const deleteUser = async (req, res) => {
     await user.deleteUserbyId(req.params.id);
     res.status(201).json({ msg: "User deleted" });
   } catch (error) {
-    console.log(err.msg);
+    console.log(error.message);
   }
 };

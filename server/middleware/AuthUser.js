@@ -1,14 +1,14 @@
 import * as user from "../models/UserModel.js";
 
 export const VerifyUser = async (req, res, next) => {
-  if (!req.session.userID) {
+  if (!req.session.userName) {
     return res.status(400).json({ msg: "Please login" });
   }
-  const result = await user.getusernamebyUsername(req.session.userID);
+  const result = await user.getusernamebyUsername(req.session.userName);
   // console.log(result);
   if (!result.length) {
     return res.status(404).json({ msg: "User not found" });
   }
-  req.userID = result[0].username;
+  req.userName = result[0].username;
   next();
 };
