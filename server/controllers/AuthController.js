@@ -2,6 +2,7 @@ import argon2, { hash, verify } from "argon2";
 import * as user from "../models/UserModel.js";
 
 export const Login = async (req, res) => {
+  console.log("aku diapnggil");
   const result = await user.getUserPassbyUsername(req.body.username);
   if (!result.length) {
     return res.status(404).json({ msg: "User not found" });
@@ -27,7 +28,7 @@ export const Me = async (req, res) => {
     return res.status(400).json({ msg: "Please login" });
   }
 
-  const result = await user.getusernamebyUsername(req.session.userID);
+  const result = await user.getusernamebyUsername(req.session.userName);
   if (!result.length) {
     return res.status(404).json({ msg: "User not found" });
   }

@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import "./App.css";
 import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
 import Login from "./components/Login";
+import Navbar from "./components/Navbar";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -10,6 +11,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path="/nav" element={<Navbar />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
