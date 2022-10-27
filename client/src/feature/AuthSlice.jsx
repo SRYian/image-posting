@@ -28,6 +28,23 @@ export const LoginUser = createAsyncThunk(
   }
 );
 
+// handles getting a current user with the me endpoint
+export const getMe = createAsyncThunk("user/getMe", async (_, thunkAPI) => {
+  try {
+    const response = await axios.get("http://localhost:5000/me");
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      const message = error.response.data.msg;
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+});
+
+export const LogOut = createAsyncThunk("user/LogOut", async () => {
+  await axios.delete("http://localhost:5000/logout");
+});
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -47,6 +64,19 @@ export const authSlice = createSlice({
       state.isLoading = false;
       state.isError = true;
       //   this is taken from the login rediucer
+      state.message = action.payload;
+    });
+    builder.addCase(getMe.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getMe.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.user = action.payload;
+    });
+    builder.addCase(getMe.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
       state.message = action.payload;
     });
   },

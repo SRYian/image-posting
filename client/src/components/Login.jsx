@@ -26,7 +26,7 @@ function Login() {
     <div className="h-full w-full">
       <div className="flex flex-col justify-center">
         <form
-          className="max-w-screen-sm w-full mx-auto bg-gray-900 p-8 px-16 rounded-lg shadow-md shadow-gray-900"
+          className="max-w-screen-sm w-full mx-auto bg-gray-900 p-8 px-16 rounded-lg shadow-md shadow-gray-900 bg-[url('../assets/bear.png)]"
           action=""
           onSubmit={Auth}
         >

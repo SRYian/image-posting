@@ -2,7 +2,7 @@ import db from "../config/Database.js";
 
 export async function getallPost() {
   const [rows, fields] = await db.execute(
-    "SELECT title, description, image, url FROM `post`"
+    "SELECT post.id, username, title, description, image, url FROM `post` INNER JOIN `user` ON user.id=post.user_id"
   );
   return rows;
 }

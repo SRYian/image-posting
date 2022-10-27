@@ -1,12 +1,13 @@
 import * as post from "../models/PostModel.js";
 import path from "path";
 import fs from "fs";
+import Fileupload from "express-fileupload";
 
 export const getPost = async (req, res) => {
   try {
     const result = await post.getallPost();
     if (!result.length) {
-      return res.status(500).json({ msg: "users does not exist" });
+      return res.status(500).json({ msg: "post does not exist" });
     }
     res.status(200).json(result);
   } catch (error) {
@@ -29,9 +30,14 @@ export const getPostbyId = async (req, res) => {
 };
 
 export const savePost = async (req, res) => {
-  if (req.files === null) {
-    await post.createPost(1, req.body.title, req.body.description);
-    return res.status(500).json({ msg: "Post Created N Image" });
+  // console.log(
+
+  // );
+  if (req.files === null || req.files === undefined) {
+    await post
+      .createPost(1, req.body.title, req.body.description)
+      .catch(console.error("what are you doing?"));
+    return res.status(200).json({ msg: "Post Created without Image" });
   }
   const name = req.body.title;
   const file = req.files.file;
@@ -66,7 +72,7 @@ export const savePost = async (req, res) => {
         fileName,
         url
       );
-      res.status(500).json({ msg: "Post Created Successfully!" });
+      res.status(200).json({ msg: "Post Created Successfully!" });
     } catch (error) {
       console.log(error.message);
       res.status(500).json({ msg: error.message });

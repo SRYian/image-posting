@@ -43,15 +43,20 @@ app.use(
     origin: "http://127.0.0.1:5173",
   })
 );
+// app.use(bodyParser.urlencoded({ extended: true}));
+// app.use(bodyParser.json());
 app.use(express.json());
+// app.use(express.json({ limit: "50mb" }));
+
+// app.use(express.urlencoded({ limit: "50mb" }));
 app.use(Fileupload());
 
+app.use(express.static("public"));
 // regular user routes
 app.use(UserRoute);
 app.use(PostRoute);
 app.use(AuthRoute);
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
+
 // app.use(express.static(__dirname + "/public"));
 
 // import * as user from "./models/UserModel.js";
