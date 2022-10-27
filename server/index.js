@@ -15,7 +15,7 @@ dotenv.config();
 
 // define application
 const app = express();
-const port = process.env.APP_PORT;
+const port = process.env.PORT;
 const TWO_HOURS = 1000 * 60;
 // apply middleware
 const options = {
