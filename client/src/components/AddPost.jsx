@@ -46,6 +46,7 @@ function AddPost() {
               setTitle(e.target.value);
             }}
             placeholder="post title"
+            required
           />
         </div>
       </div>

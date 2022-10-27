@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { LoginUser, reset } from "../feature/AuthSlice";
 function Login() {
-  const [username, setUsername] = useState("user");
-  const [password, setPassword] = useState("password");
+  const [username, setUsername] = useState("111");
+  const [password, setPassword] = useState("111");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, isError, isSuccess, isLoading, message } = useSelector(
@@ -13,8 +13,8 @@ function Login() {
 
   useEffect(() => {
     if (user || isSuccess) {
-      navigate("/nav");
       dispatch(reset());
+      navigate("/mypost");
     }
   }, [user, isSuccess, dispatch]);
 

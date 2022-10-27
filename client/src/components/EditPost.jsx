@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 function EditPost() {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(``);
   const [description, setDescription] = useState("");
   const [file, setFile] = useState("");
   const { id } = useParams();
@@ -15,11 +15,11 @@ function EditPost() {
 
   const getPostById = async () => {
     const response = await axios.get(`http://localhost:5000/post/${id}`);
-    console.log(response.data.title);
-    setTitle(response.data.title);
-    setFile(response.data.image);
-    setDescription(response.data.description);
-    setPreview(response.data.url);
+    setTitle(response.data[0].title);
+    setFile(response.data[0].image);
+    setDescription(response.data[0].description);
+    setPreview(response.data[0].url);
+    console.log(title);
   };
 
   const loadImage = (e) => {
@@ -61,6 +61,7 @@ function EditPost() {
               setTitle(e.target.value);
             }}
             placeholder="post title"
+            required
           />
         </div>
       </div>

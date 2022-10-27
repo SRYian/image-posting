@@ -13,12 +13,17 @@ export const LoginUser = createAsyncThunk(
   "user/LoginUser",
   async (user, thunkAPI) => {
     try {
-      const response = await axios.post("http://localhost:5000/login", {
-        username: user.username,
-        password: user.password,
-      });
-      console.log(response.data);
-      return response.data;
+      const formData = new FormData();
+      formData.append("username", user.username);
+      formData.append("password", user.password);
+      console.log(user.username + " " + user.password + "\n");
+      console.log(formData + "\n");
+      const response = await axios.post(
+        "http://localhost:5000/login",
+        formData
+      );
+      console.log("DATA IS HERE " + response.data.username);
+      return response.data.username;
     } catch (error) {
       if (error.response) {
         const message = error.response.data.msg;
@@ -32,6 +37,8 @@ export const LoginUser = createAsyncThunk(
 export const getMe = createAsyncThunk("user/getMe", async (_, thunkAPI) => {
   try {
     const response = await axios.get("http://localhost:5000/me");
+    console.log("DATA IS HERE ME " + response.data.msg);
+
     return response.data;
   } catch (error) {
     if (error.response) {

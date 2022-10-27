@@ -16,7 +16,7 @@ dotenv.config();
 // define application
 const app = express();
 const port = process.env.APP_PORT;
-const TWO_HOURS = 1000 * 60 * 2;
+const TWO_HOURS = 1000 * 60;
 // apply middleware
 const options = {
   host: "localhost",
@@ -29,13 +29,13 @@ app.use(
   session({
     name: process.env.SESS_NAME,
     resave: false,
-    saveUninitialized: false,
     store: sessionStore,
     secret: process.env.SESS_SECRET,
     saveUninitialized: true,
     cookie: { maxAge: TWO_HOURS, sameSite: true, secure: "auto" },
   })
 );
+
 // middleware
 app.use(
   cors({
@@ -43,7 +43,7 @@ app.use(
     origin: "http://127.0.0.1:5173",
   })
 );
-// app.use(bodyParser.urlencoded({ extended: true}));
+// app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());
 app.use(express.json());
 // app.use(express.json({ limit: "50mb" }));

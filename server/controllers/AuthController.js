@@ -18,12 +18,22 @@ export const Login = async (req, res) => {
   }
   req.session.userID = result[0].id;
   req.session.userName = result[0].username;
+  console.log("session: " + req.session.userName + " " + req.session.userID);
+  req.session.save((error) => {
+    if (error) {
+      console.log(error);
+    }
+  });
   const id = result[0].id;
   const username = result[0].username;
-  return res.status(200).json({ username });
+
+  return res.status(200).json({ id, username });
 };
 
 export const Me = async (req, res) => {
+  console.log(
+    "getting session: " + req.session.userName + " " + req.session.userID
+  );
   if (!req.session.userName) {
     return res.status(400).json({ msg: "Please login" });
   }
@@ -40,6 +50,6 @@ export const Logout = async (req, res) => {
     if (err) {
       return res.status(400).json({ msg: "Cannot logout" });
     }
-    res.status(400).json({ msg: "Logged out" });
+    res.status(200).json({ msg: "Logged out" });
   });
 };

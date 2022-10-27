@@ -8,6 +8,7 @@ import {
 } from "../controllers/PostController.js";
 
 const router = express.Router();
+import { VerifyUser } from "../middleware/AuthUser.js";
 
 router.get("/post", getPost);
 router.get("/post/:id", getPostbyId);
