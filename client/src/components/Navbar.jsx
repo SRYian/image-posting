@@ -6,6 +6,7 @@ function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
+  console.log(user);
   const Logout = () => {
     dispatch(LogOut());
     dispatch(reset());
@@ -13,6 +14,8 @@ function Navbar() {
   };
   return (
     <nav className="bg-white px-2 sm:px-4 py-3 fixed w-full z-20 top-0 left-0 border-b-2 border-blue-500">
+      <h3 className="bluefont">{user && user.username}</h3>
+
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <a href="/" className="flex items-center">
           <img src="../logo/bear.png" className="mr-3 h-6 sm:h-9" alt="Logo" />
@@ -21,7 +24,6 @@ function Navbar() {
           </span>
         </a>
         <div className="flex md:order-2">
-          <h3>{user && user.username}</h3>
           <button
             type="button"
             className="text-white bluebutton focus:ring-blue-300 font-medium rounded-lg text-base px-8 py-2.5 text-center mr-3 md:mr-0"

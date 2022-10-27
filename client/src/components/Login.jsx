@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { LoginUser, reset } from "../feature/AuthSlice";
+import { getMe, LoginUser, reset } from "../feature/AuthSlice";
 function Login() {
   const [username, setUsername] = useState("111");
   const [password, setPassword] = useState("111");
@@ -13,10 +13,11 @@ function Login() {
 
   useEffect(() => {
     if (user || isSuccess) {
-      dispatch(reset());
+      console.log("USER LOGGED IN, WELCOME " + user);
       navigate("/mypost");
     }
-  }, [user, isSuccess, dispatch]);
+    dispatch(reset());
+  }, [user, isSuccess, dispatch, navigate]);
 
   const Auth = (e) => {
     e.preventDefault();
@@ -26,23 +27,24 @@ function Login() {
     <div className="h-full w-full">
       <div className="flex flex-col justify-center">
         <form
-          className="max-w-screen-sm w-full mx-auto bg-gray-900 p-8 px-16 rounded-lg shadow-md shadow-gray-900 bg-[url('../assets/bear.png)]"
+          className="max-w-screen-sm w-full mx-auto bg-gray-100 p-8 px-16 rounded-lg shadow-md shadow-gray-900 bg-[url('../assets/bear.png)]"
           action=""
           onSubmit={Auth}
         >
-          {isError && <p className="text-center">{message}</p>}
-          <h2 className="text-4xl dark:text-white font-bold text-center py-2">
-            SIGN IN
-          </h2>
+          {user && <p className="text-center bluefont">{user}</p>}
+          {isError && <p className="text-center bluefont">{message}</p>}
+          <h3 className="text-3xl bluefont font-bold text-center py-2">
+            MEMBER LOGIN
+          </h3>
           <div className="flex flex-col text-gray-400 py-2">
             <label
-              className=" dark:text-white font-semibold text-left"
+              className="text-gray-500  font-semibold text-left"
               htmlFor=""
             >
               Username
             </label>
             <input
-              className="rounded-lg bg-gray-700 mt-2 p-1 focus:border-x-green-400 focus:bg-gray-800 focus:outline-none "
+              className="rounded-lg text-gray-500 bg-gray-300 mt-2 p-1 focus:border-x-green-400 focus:bg-gray-400 focus:outline-none "
               type="text"
               placeholder="username"
               value={username}
@@ -54,14 +56,11 @@ function Login() {
             />
           </div>
           <div className="flex flex-col text-gray-400 py-2 ">
-            <label
-              className="dark:text-white font-semibold text-left"
-              htmlFor=""
-            >
+            <label className="text-gray-500 font-semibold text-left" htmlFor="">
               Password
             </label>
             <input
-              className="rounded-lg bg-gray-700 mt-2 p-1 focus:border-x-green-400 focus:bg-gray-800 focus:outline-none "
+              className="rounded-lg text-gray-500 bg-gray-300 mt-2 p-1 focus:border-x-green-400 focus:bg-gray-400 focus:outline-none "
               type="password"
               placeholder="password"
               value={password}
@@ -74,7 +73,7 @@ function Login() {
           </div>
           <button
             type="submit"
-            className="w-full my-9 py-2 bg-green-400 shadow-md hover:bg-green-500 shadow-green-500/50 hover:shadow-green-500/40 text-white font-semibold rounded-lg border-none focus:outline-none"
+            className="bluebutton w-full my-9 py-2 bg-green-400 shadow-md hover:bg-green-500 shadow-blue-500/50 hover:shadow-blue-500/40 text-white font-semibold rounded-full border-none focus:outline-none"
           >
             {isLoading ? "loading..." : "login"}
           </button>

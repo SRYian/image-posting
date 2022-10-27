@@ -24,10 +24,9 @@ const options = {
   database: "testdb",
 };
 
-const sessionStore = new MySQLStore(options);
+const sessionStore = new MySQLStore(options, db);
 app.use(
   session({
-    name: process.env.SESS_NAME,
     resave: false,
     store: sessionStore,
     secret: process.env.SESS_SECRET,

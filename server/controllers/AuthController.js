@@ -50,6 +50,7 @@ export const Logout = async (req, res) => {
     if (err) {
       return res.status(400).json({ msg: "Cannot logout" });
     }
+
     res.status(200).json({ msg: "Logged out" });
   });
 };
