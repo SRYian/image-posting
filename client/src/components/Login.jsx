@@ -24,7 +24,7 @@ function Login() {
     dispatch(LoginUser({ username, password }));
   };
   return (
-    <div className="flex items-center justify-center h-screen w-screen bg-[url('./assets/react.svg')]">
+    <div className="flex items-center justify-center h-screen w-screen bg-[url('./assets/cover.png')] bg-cover">
       <div className="flex flex-col justify-items-center">
         <form
           className="max-w-screen-sm mx-auto bg-gray-100 p-8 px-16 rounded-lg shadow-md shadow-gray-50 bg-[url('../assets/bear.png)]"
@@ -52,6 +52,7 @@ function Login() {
               }}
               name=""
               id=""
+              required
             />
           </div>
           <div className="flex flex-col text-gray-400 py-2 ">
@@ -68,6 +69,7 @@ function Login() {
               }}
               name=""
               id=""
+              required
             />
           </div>
           <button

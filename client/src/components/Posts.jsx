@@ -20,23 +20,24 @@ function Posts() {
     try {
       await axios.delete(`http://localhost:5000/post/${index}`);
       getPosts();
-      navigate("/posts");
+      navigate("/mypost");
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className="w-full h-full mt-32">
-      <div className="container grid gap-4 md:grid-cols-4">
+    <div className="mt-32  p-10">
+      <div className=""></div>
+      <div className="grid gap-20  sm:grid-cols-3 grid-cols-1 col-auto ">
         {posts.map((post, index) => {
           return (
             <div
               key={post.id}
-              className="flex flex-col justify-end bg-white max-w-sm rounded-xl overflow-hidden shadow-lg p-4"
+              className="flex flex-col justify-end bg-white rounded-xl shadow-lg p-4"
             >
               <img
-                className="rounded-lg w-full object-cover"
+                className="rounded-lg w-full object-contain"
                 src={post.url}
                 alt="Sunset in the mountains"
               />
@@ -71,13 +72,13 @@ function Posts() {
             </div>
           );
         })}
-      </div>
-      <div className="p-6 ">
-        <AiOutlinePlusCircle
-          onClick={() => navigate(`/addpost`)}
-          className=" hover:brightness-90"
-          style={{ fontSize: "10rem", color: "#08c" }}
-        />
+        <div className="p-6 flex items-center justify-center">
+          <AiOutlinePlusCircle
+            onClick={() => navigate(`/addpost`)}
+            className=" hover:brightness-90"
+            style={{ fontSize: "10rem", color: "#08c" }}
+          />
+        </div>
       </div>
     </div>
   );

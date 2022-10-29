@@ -65,8 +65,9 @@ export const savePost = async (req, res) => {
       console.log(
         req.body.title + " " + req.body.description + " " + req.files.file
       );
+      console.log(req.session.userName);
       await post.createPost(
-        1,
+        req.session.userID,
         req.body.title,
         req.body.description,
         fileName,

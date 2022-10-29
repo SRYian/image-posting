@@ -79,7 +79,7 @@ function Navbar() {
           <ul className="flex flex-col mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
             <li>
               <a
-                href="#"
+                href="/home"
                 className="text-base font-semibold bluefont inline-block p-4 px-10 py-4 rounded-t-lg border-b-2 border-transparent hover:text-blue-500 hover:border-blue-400"
                 id="contacts-tab"
                 aria-current="page"
@@ -89,7 +89,9 @@ function Navbar() {
             </li>
             <li>
               <a
-                href="#"
+                onClick={() => {
+                  user ? navigate("/mypost") : navigate("/urmom");
+                }}
                 className="text-base font-semibold bluefont inline-block p-4 px-10 py-4 rounded-t-lg border-b-2 border-transparent hover:text-blue-500 hover:border-blue-400"
                 id="contacts-tab"
               >
