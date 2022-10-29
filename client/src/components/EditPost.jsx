@@ -42,7 +42,7 @@ function EditPost() {
         formData
       );
       console.log(response);
-      navigate("/posts");
+      navigate("/mypost");
     } catch (error) {
       console.log(error);
     }
@@ -68,7 +68,7 @@ function EditPost() {
       <textarea
         rows="2"
         cols="20"
-        maxlength="50"
+        maxLength="50"
         value={description}
         onChange={(e) => {
           setDescription(e.target.value);

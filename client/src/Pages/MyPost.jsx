@@ -13,7 +13,7 @@ function MyPost() {
   }, [dispatch]);
   useEffect(() => {
     if (isError) {
-      // navigate("/login");
+      navigate("/login");
     }
   }, [isError, navigate]);
 

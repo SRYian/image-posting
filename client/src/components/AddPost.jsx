@@ -28,7 +28,7 @@ function AddPost() {
           console.log(response.data);
         });
       console.log(response);
-      navigate("/posts");
+      navigate("/mypost");
     } catch (error) {
       console.log(error);
     }

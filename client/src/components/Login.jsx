@@ -24,14 +24,13 @@ function Login() {
     dispatch(LoginUser({ username, password }));
   };
   return (
-    <div className="h-full w-full">
-      <div className="flex flex-col justify-center">
+    <div className="flex items-center justify-center h-screen w-screen bg-[url('./assets/react.svg')]">
+      <div className="flex flex-col justify-items-center">
         <form
-          className="max-w-screen-sm w-full mx-auto bg-gray-100 p-8 px-16 rounded-lg shadow-md shadow-gray-900 bg-[url('../assets/bear.png)]"
+          className="max-w-screen-sm mx-auto bg-gray-100 p-8 px-16 rounded-lg shadow-md shadow-gray-50 bg-[url('../assets/bear.png)]"
           action=""
           onSubmit={Auth}
         >
-          {user && <p className="text-center bluefont">{user}</p>}
           {isError && <p className="text-center bluefont">{message}</p>}
           <h3 className="text-3xl bluefont font-bold text-center py-2">
             MEMBER LOGIN

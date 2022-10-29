@@ -16,7 +16,7 @@ dotenv.config();
 // define application
 const app = express();
 const port = process.env.PORT;
-const TWO_HOURS = 1000 * 60;
+const TWO_HOURS = 1000 * 60 * 2;
 // apply middleware
 const options = {
   host: "localhost",
@@ -24,14 +24,14 @@ const options = {
   database: "testdb",
 };
 
-const sessionStore = new MySQLStore(options, db);
+const sessionStore = new MySQLStore(options);
 app.use(
   session({
     resave: false,
     store: sessionStore,
     secret: process.env.SESS_SECRET,
     saveUninitialized: true,
-    cookie: { maxAge: TWO_HOURS, sameSite: true, secure: "auto" },
+    cookie: { maxAge: TWO_HOURS, sameSite: "none", secure: "auto" },
   })
 );
 

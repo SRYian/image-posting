@@ -14,10 +14,10 @@ POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-    "username": "111",
-    "email": "111@hello.com",
-    "password": "111",
-    "confpassword": "111"
+    "username": "admin",
+    "email": "admin@hello.com",
+    "password": "admin",
+    "confpassword": "admin"
 }
 ### 
 POST http://localhost:5000/users
@@ -51,8 +51,8 @@ POST  http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "username": "111",
-    "password": "111"
+    "username": "admin",
+    "password": "admin"
 }
 
 ### Getme

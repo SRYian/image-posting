@@ -27,11 +27,14 @@ function Posts() {
   };
 
   return (
-    <div className="mt-32">
+    <div className="w-full h-full mt-32">
       <div className="container grid gap-4 md:grid-cols-4">
         {posts.map((post, index) => {
           return (
-            <div class="flex flex-col justify-end bg-white max-w-sm rounded-xl overflow-hidden shadow-lg p-4">
+            <div
+              key={post.id}
+              className="flex flex-col justify-end bg-white max-w-sm rounded-xl overflow-hidden shadow-lg p-4"
+            >
               <img
                 className="rounded-lg w-full object-cover"
                 src={post.url}
